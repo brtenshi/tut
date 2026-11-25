@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c4q2jlym1ngsq"]
+
+[ext_resource type="Script" uid="uid://cd1jaii2e7wq2" path="res://ground_tower.gd" id="1_km4ea"]
+[ext_resource type="PackedScene" uid="uid://4o3uq7bam7nb" path="res://Towers/standard_tower.tscn" id="2_8ro8a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wr4yg"]
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wr4yg"]
+radius = 2.0
+
+[node name="GroundTower" type="StaticBody3D" unique_id=2058698076]
+script = ExtResource("1_km4ea")
+
+[node name="Standard_tower_model" parent="." unique_id=1789093904 instance=ExtResource("2_8ro8a")]
+transform = Transform3D(0.5038991, 0.0067539066, -0.0074861976, -0.006392538, 0.50339395, 0.023867637, 0.007797046, -0.0237679, 0.5033788, -0.0029368014, 0.4463191, 0.24127145)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1825056113]
+transform = Transform3D(0.99979997, 0.013400584, -0.014853598, -0.012683599, 0.99879754, 0.047356445, 0.015470325, -0.047158536, 0.9987676, -0.0022170092, 0.4999677, 0.23873843)
+shape = SubResource("CapsuleShape3D_wr4yg")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1023134432]
+unique_name_in_owner = true
+transform = Transform3D(1, 7.642743e-15, 0, -7.642742e-15, 1, 0, 0, 0, 1, -0.0025770012, 0.44413137, -0.48000985)
+
+[node name="BulletTimer" type="Timer" parent="." unique_id=1213532197]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[node name="DetectionRadius" type="Area3D" parent="." unique_id=400908749]
+unique_name_in_owner = true
+transform = Transform3D(0.365, 0, 0, 0, 0.365, 0, 0, 0, 0.365, 0, 0, 0)
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRadius" unique_id=1420929427]
+transform = Transform3D(10.06, 0, 0, 0, 10.06, 0, 0, 0, 10.06, 0, 0.5070963, 0)
+shape = SubResource("SphereShape3D_wr4yg")
+
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
+[connection signal="body_exited" from="DetectionRadius" to="." method="_on_detection_radius_body_exited"]

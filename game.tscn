@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dmh5lr1au5gcx"]
+
+[ext_resource type="PackedScene" uid="uid://do8a58e435une" path="res://player/player.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://dck77v48xmsex" path="res://level/checkboard.png" id="1_e2o6t"]
+[ext_resource type="Material" uid="uid://cw3bxt8y0ecqi" path="res://bridge.tres" id="1_feb5d"]
+[ext_resource type="Script" uid="uid://bgy4n4vjs2hba" path="res://game.gd" id="1_ryrav"]
+[ext_resource type="PackedScene" uid="uid://c7imp43hlb2ux" path="res://mob/mob.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://cesio4l4sqgfj" path="res://mob/spawner/mob_spawner_3d.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://c4q2jlym1ngsq" path="res://Towers/ground_tower.tscn" id="7_eow3j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
+albedo_color = Color(0.44378507, 0.23394647, 0.71488047, 1)
+albedo_texture = ExtResource("1_e2o6t")
+uv1_scale = Vector3(0.395, 0.395, 0.395)
+uv1_triplanar = true
+
+[sub_resource type="Environment" id="Environment_wr4yg"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.47146028, 0.5350977, 0.46361434, 1)
+tonemap_mode = 1
+tonemap_exposure = 1.27
+tonemap_white = 1.14
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.226
+fog_height = -4.0
+fog_height_density = 0.3711
+
+[sub_resource type="LabelSettings" id="LabelSettings_wr4yg"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 30
+shadow_color = Color(0, 0, 0.05882353, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wr4yg"]
+
+[node name="Game" type="Node3D" unique_id=704866235]
+script = ExtResource("1_ryrav")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2087324931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -0.9)
+use_collision = true
+size = Vector3(103, 3, 84)
+material = ExtResource("1_feb5d")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=197245828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 42.0995)
+use_collision = true
+size = Vector3(105, 36, 0.001)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1518109868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9995, 17, 0.5999985)
+use_collision = true
+size = Vector3(0.001, 38, 85)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1994054209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.493927, 14.917418, -40.930386)
+use_collision = true
+size = Vector3(109, 34, 0.001)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=198798020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.987854, 28.835335, 1.1382294)
+use_collision = true
+size = Vector3(118, 0.001, 91)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1121857891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.9995, 16, -0.9000015)
+use_collision = true
+size = Vector3(0.001, 36, 88)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="Player" parent="." unique_id=72928874 instance=ExtResource("1_80nbo")]
+collision_mask = 3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=163292265]
+transform = Transform3D(0.5071164, -0.8617179, 0.016589763, 0.023633704, 0.033144347, 0.99917114, -0.86155355, -0.506304, 0.037173614, 2, 7, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1500336937]
+environment = SubResource("Environment_wr4yg")
+
+[node name="Label" type="Label" parent="." unique_id=996924675]
+unique_name_in_owner = true
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 246.0
+offset_bottom = 102.0
+text = "Round: 0"
+label_settings = SubResource("LabelSettings_wr4yg")
+
+[node name="MobSpawner3d" parent="." unique_id=1880043282 instance=ExtResource("5_7jktm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 0)
+mob_to_spawn = ExtResource("4_fc0e3")
+
+[node name="GroundTower" parent="." unique_id=525528414 instance=ExtResource("7_eow3j")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 2, 10)
+
+[node name="killplane" type="Area3D" parent="." unique_id=1319632250]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killplane" unique_id=574086069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.1731224, 0)
+shape = SubResource("WorldBoundaryShape3D_wr4yg")
+
+[connection signal="body_entered" from="killplane" to="." method="_on_killplane_body_entered"]

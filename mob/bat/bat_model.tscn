@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://kmtl2o1ma1i"]
+
+[ext_resource type="PackedScene" uid="uid://d0m567ei8w71p" path="res://mob/bat/bat_model.glb" id="1_1he7g"]
+[ext_resource type="Script" uid="uid://bi8lq2utaysur" path="res://mob/bat/bat_model.gd" id="2_vgr6s"]
+[ext_resource type="Material" uid="uid://cgon0tqi2wfou" path="res://mob/bat/new_standard_material_3d.tres" id="3_shx3p"]
+
+[sub_resource type="Animation" id="Animation_scfiv"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/bat:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.15, 1.15, 1.15), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/bat:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.95507807, 0, 0.20813733, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qf8hm"]
+_data = {
+&"hurt": SubResource("Animation_scfiv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vgr6s"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwaj3"]
+animation = &"custom/hurt"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3et4o"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nm8t1"]
+graph_offset = Vector2(-67.331726, -39.0587)
+nodes/output/position = Vector2(1140, 100)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_3et4o")
+nodes/OneShot/position = Vector2(881.83514, 42.83543)
+nodes/Hurt/node = SubResource("AnimationNodeAnimation_gwaj3")
+nodes/Hurt/position = Vector2(560, 240)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_vgr6s")
+nodes/Animation/position = Vector2(560, 20)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Hurt"]
+
+[node name="bat_model" unique_id=1504001428 instance=ExtResource("1_1he7g")]
+script = ExtResource("2_vgr6s")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(250989745) index="0" unique_id=1320521674]
+bones/0/position = Vector3(0, 0.023599997, 0)
+bones/1/rotation = Quaternion(0.19434892, -0.013531907, -0.6317778, 0.75026804)
+bones/2/rotation = Quaternion(0.17701167, 0.07890948, 0.39954153, 0.89599496)
+bones/3/rotation = Quaternion(0.1271474, 0.10061537, 0.3630216, 0.91756505)
+bones/4/rotation = Quaternion(0.19434892, 0.013531907, 0.6317778, 0.75026804)
+bones/5/rotation = Quaternion(0.17701167, -0.07890948, -0.39954153, 0.89599496)
+bones/6/rotation = Quaternion(0.1271474, -0.10061537, -0.3630216, 0.91756505)
+bones/7/position = Vector3(0.1309921, -0.22739176, -0.087851465)
+bones/7/rotation = Quaternion(0.26196837, 0.08345512, 0.26575127, 0.9240044)
+bones/8/rotation = Quaternion(3.829381e-08, 0.64648783, 0.7629244, 2.5509049e-08)
+bones/10/position = Vector3(-0.1309921, -0.22739176, -0.087851465)
+bones/10/rotation = Quaternion(0.26196837, -0.083455116, -0.26575127, 0.9240044)
+bones/11/rotation = Quaternion(2.5557757e-08, 0.64648783, 0.7629244, 3.224648e-08)
+
+[node name="bat" parent="Armature/Skeleton3D" index="0" unique_id=567135107]
+surface_material_override/0 = ExtResource("3_shx3p")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1218739476]
+libraries/custom = SubResource("AnimationLibrary_qf8hm")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1676425662]
+unique_name_in_owner = true
+deterministic = false
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_nm8t1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0

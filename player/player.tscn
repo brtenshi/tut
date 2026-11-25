@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://do8a58e435une"]
+
+[ext_resource type="PackedScene" uid="uid://b8wg04turco6t" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://h7vbam6qxj0x" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://cm6xf4lfge4rj" path="res://player/reticle.png" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://cuo5a4svwlmh5" path="res://player/gun_shoot.wav" id="4_yw30f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wr4yg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wr4yg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wr4yg"]
+size = Vector3(0.3, 0.3, 0.6154297)
+
+[node name="Player" type="CharacterBody3D" unique_id=72928874]
+script = ExtResource("1_rkbax")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=370930196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_wr4yg")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1035751357]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4670475, -0.21845293)
+
+[node name="gun_model" parent="Camera3D" unique_id=1782559003 instance=ExtResource("1_oul6g")]
+unique_name_in_owner = true
+transform = Transform3D(-0.2749009, 0, 0.0073834322, 0, 0.275, 0, -0.0073834322, 0, -0.2749009, 0.47316152, -0.22326005, -0.4441617)
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D" unique_id=859901469]
+unique_name_in_owner = true
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.45225734, -0.22633421, -1.1998284)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2128335754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_wr4yg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1182632002]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.00071793795, 1.5099597, -0.36071652)
+visible = false
+mesh = SubResource("BoxMesh_wr4yg")
+
+[node name="Reticle" type="TextureRect" parent="." unique_id=278424443]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_g1dw6")
+expand_mode = 1
+
+[node name="BulletTimer" type="Timer" parent="." unique_id=1919354008]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=521181906]
+unique_name_in_owner = true
+stream = ExtResource("4_yw30f")
