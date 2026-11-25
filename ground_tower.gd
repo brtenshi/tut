@@ -45,7 +45,8 @@ func shoot_bullet():
 	
 	%BulletTimer.start()
 
-
+func spawn_tower():
+	pass
 
 func _on_detection_radius_body_entered(body: Node3D) -> void:
 		targetsList.append(body)
