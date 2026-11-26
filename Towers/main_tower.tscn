@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://icjrhyhiqug2"]
+
+[ext_resource type="PackedScene" uid="uid://dowgi0jc1ur0k" path="res://Towers/main_tower_model.tscn" id="1_3hxl3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wr4yg"]
+size = Vector3(2.0064697, 6.930176, 1.9956055)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1044767056]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1099886041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049438477, 3.469622, -0.0021972656)
+shape = SubResource("BoxShape3D_wr4yg")
+
+[node name="main_tower" parent="." unique_id=224752108 instance=ExtResource("1_3hxl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1733513, 0)

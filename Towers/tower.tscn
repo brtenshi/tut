@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4q2jlym1ngsq"]
 
 [ext_resource type="Script" uid="uid://cd1jaii2e7wq2" path="res://ground_tower.gd" id="1_km4ea"]
-[ext_resource type="PackedScene" uid="uid://4o3uq7bam7nb" path="res://Towers/standard_tower.tscn" id="2_8ro8a"]
+[ext_resource type="PackedScene" uid="uid://4o3uq7bam7nb" path="res://Towers/tower_model.tscn" id="2_8ro8a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wr4yg"]
 height = 1.0

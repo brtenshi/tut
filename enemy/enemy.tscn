@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cbctn55h6v64q"]
+
+[ext_resource type="PackedScene" uid="uid://cwl872hdk0qd" path="res://enemy/enemy_model.tscn" id="1_2mvqj"]
+[ext_resource type="Script" uid="uid://bls8t8s58pl5h" path="res://enemy/enemy.gd" id="1_ofsxj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1li7"]
+
+[node name="Enemy" type="RigidBody3D" unique_id=1572350606]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 514
+lock_rotation = true
+constant_force = Vector3(0, -20, 0)
+script = ExtResource("1_ofsxj")
+
+[node name="enemy_model" parent="." unique_id=494116373 instance=ExtResource("1_2mvqj")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -8.905182e-18, 0.20134544, 1.0186341e-10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1158393075]
+transform = Transform3D(-1.36, 0, -1.18894974e-07, 0, 1.36, 0, 1.18894974e-07, 0, -1.36, 0.0023928555, 0.67961437, -0.00048694023)
+shape = SubResource("SphereShape3D_t1li7")
+
+[node name="Timer" type="Timer" parent="." unique_id=1553386043]
+unique_name_in_owner = true
+wait_time = 7.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="enemy_model"]

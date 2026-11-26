@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dowgi0jc1ur0k"]
+
+[ext_resource type="PackedScene" uid="uid://c0fxwcgyc1cex" path="res://Towers/main_tower.glb" id="1_odhmg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm8t1"]
+albedo_color = Color(0.29694486, 0.09830629, 3.6098065e-08, 1)
+
+[node name="main_tower" unique_id=224752108 instance=ExtResource("1_odhmg")]
+
+[node name="Cube" parent="." index="0" unique_id=1311761016]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_001" parent="." index="1" unique_id=1869339110]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_002" parent="." index="2" unique_id=1635040313]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_003" parent="." index="3" unique_id=989529748]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_004" parent="." index="4" unique_id=716858743]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_005" parent="." index="5" unique_id=1679483171]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_006" parent="." index="6" unique_id=1022469141]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_007" parent="." index="7" unique_id=1400919157]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_008" parent="." index="8" unique_id=1412597900]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_009" parent="." index="9" unique_id=764628577]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_010" parent="." index="10" unique_id=1882807578]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_011" parent="." index="11" unique_id=1911240977]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_012" parent="." index="12" unique_id=22287522]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Cube_013" parent="." index="13" unique_id=1718427133]
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")

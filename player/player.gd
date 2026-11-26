@@ -39,6 +39,9 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("shoot") and %BulletTimer.is_stopped():
 		shoot_bullet()
+		
+	if Input.is_action_just_pressed("place_turret"):
+		place_turret()
 
 func shoot_bullet():
 	const BULLET_3D = preload("uid://elhildpxvgrg")
@@ -49,3 +52,12 @@ func shoot_bullet():
 	
 	%BulletTimer.start()
 	%AudioStreamPlayer.play()
+	
+func place_turret():
+	const turret = preload("res://Towers/tower.tscn")
+	var new_turret = turret.instantiate()
+	var game = get_tree().get_first_node_in_group("Game")
+	game.add_child(new_turret)
+	new_turret.global_transform = %Marker3D.global_transform
+	
+	
