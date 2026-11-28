@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dck77v48xmsex" path="res://level/checkboard.png" id="1_e2o6t"]
 [ext_resource type="Material" uid="uid://cw3bxt8y0ecqi" path="res://bridge.tres" id="1_feb5d"]
 [ext_resource type="Script" uid="uid://bgy4n4vjs2hba" path="res://game.gd" id="1_ryrav"]
-[ext_resource type="PackedScene" uid="uid://c7imp43hlb2ux" path="res://mob/mob.tscn" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://cesio4l4sqgfj" path="res://mob/spawner/mob_spawner_3d.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://c4q2jlym1ngsq" path="res://Towers/tower.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://cbctn55h6v64q" path="res://enemy/enemy.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://icjrhyhiqug2" path="res://Towers/main_tower.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://nig3tvxblt2q" path="res://enemy/spawner/enemy_spawner.tscn" id="10_hve3p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
 albedo_color = Color(0.44378507, 0.23394647, 0.71488047, 1)
 albedo_texture = ExtResource("1_e2o6t")
 uv1_scale = Vector3(0.395, 0.395, 0.395)
 uv1_triplanar = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wr4yg"]
 
 [sub_resource type="Environment" id="Environment_wr4yg"]
 background_mode = 1
@@ -35,8 +35,6 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 30
 shadow_color = Color(0, 0, 0.05882353, 0)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wr4yg"]
 
 [node name="Game" type="Node3D" unique_id=704866235 groups=["Game"]]
 script = ExtResource("1_ryrav")
@@ -77,16 +75,18 @@ use_collision = true
 size = Vector3(0.001, 31, 84.3)
 material = SubResource("StandardMaterial3D_80nbo")
 
-[node name="Player" parent="." unique_id=72928874 instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-collision_mask = 3
+[node name="killplane" type="Area3D" parent="." unique_id=1319632250]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=163292265]
-transform = Transform3D(0.5071164, -0.8617179, 0.016589763, 0.023633704, 0.033144347, 0.99917114, -0.86155355, -0.506304, 0.037173614, 2, 7, 0)
-shadow_enabled = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killplane" unique_id=574086069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.1731224, 0)
+shape = SubResource("WorldBoundaryShape3D_wr4yg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1500336937]
 environment = SubResource("Environment_wr4yg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=163292265]
+transform = Transform3D(0.5071164, -0.86171794, 0.01658979, 0.023633704, 0.033144344, 0.99917114, -0.86155355, -0.5063039, 0.037173625, 2, 7, 0)
+shadow_enabled = true
 
 [node name="Label" type="Label" parent="." unique_id=996924675]
 unique_name_in_owner = true
@@ -94,28 +94,30 @@ offset_left = 33.0
 offset_top = 33.0
 offset_right = 246.0
 offset_bottom = 102.0
-text = "Round: 0"
+text = "Round: 1"
 label_settings = SubResource("LabelSettings_wr4yg")
 
-[node name="MobSpawner3d" parent="." unique_id=1880043282 instance=ExtResource("5_7jktm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 0)
-mob_to_spawn = ExtResource("4_fc0e3")
+[node name="round_timer" type="Timer" parent="." unique_id=812880540]
+unique_name_in_owner = true
+wait_time = 10.0
 
-[node name="GroundTower" parent="." unique_id=525528414 instance=ExtResource("7_eow3j")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 2, 10)
+[node name="main_tower" parent="." unique_id=1044767056 instance=ExtResource("9_vef74")]
 
-[node name="GroundTower2" parent="." unique_id=2058698076 instance=ExtResource("7_eow3j")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 8.34465e-07, 4, 18)
+[node name="Player" parent="." unique_id=72928874 instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+collision_mask = 3
 
-[node name="killplane" type="Area3D" parent="." unique_id=1319632250]
+[node name="enemy_spawner" parent="." unique_id=1980365295 instance=ExtResource("10_hve3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048095986, 1.2503722, 39.950565)
+enemy_to_spawn = ExtResource("8_j5wjh")
+start_round = 2.0
+wait_time = 10.0
+speed_increase_threshhold = 1.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="killplane" unique_id=574086069]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.1731224, 0)
-shape = SubResource("WorldBoundaryShape3D_wr4yg")
-
-[node name="Node3D" parent="." unique_id=1572350606 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
-
-[node name="StaticBody3D" parent="." unique_id=1044767056 instance=ExtResource("9_vef74")]
+[node name="enemy_spawner2" parent="." unique_id=1190050046 instance=ExtResource("10_hve3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048095986, 4.250372, 39.950565)
+enemy_to_spawn = ExtResource("8_j5wjh")
+start_round = 5.0
 
 [connection signal="body_entered" from="killplane" to="." method="_on_killplane_body_entered"]
+[connection signal="timeout" from="round_timer" to="." method="_on_timer_timeout"]

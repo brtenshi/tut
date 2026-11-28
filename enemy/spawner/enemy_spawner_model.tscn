@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d4ng5eaxdjayp"]
+
+[ext_resource type="PackedScene" uid="uid://p6ehehfye7s5" path="res://enemy/spawner/enemy_spawner.glb" id="1_cqjhl"]
+[ext_resource type="Script" uid="uid://c6cokiopawuc8" path="res://enemy/spawner/enemy_spawner_model.gd" id="2_oaj04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm8t1"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr4yg"]
+resource_local_to_scene = true
+
+[node name="enemy_spawner_model" unique_id=2021454905 instance=ExtResource("1_cqjhl")]
+script = ExtResource("2_oaj04")
+
+[node name="Cylinder" parent="." index="0" unique_id=591379754]
+unique_name_in_owner = true
+surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
+
+[node name="Torus" parent="." index="1" unique_id=1292631013]
+unique_name_in_owner = true
+surface_material_override/0 = SubResource("StandardMaterial3D_wr4yg")

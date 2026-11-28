@@ -5,7 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm8t1"]
 albedo_color = Color(0.29694486, 0.09830629, 3.6098065e-08, 1)
 
-[node name="main_tower" unique_id=224752108 instance=ExtResource("1_odhmg")]
+[node name="main_tower_model" unique_id=224752108 instance=ExtResource("1_odhmg")]
 
 [node name="Cube" parent="." index="0" unique_id=1311761016]
 surface_material_override/0 = SubResource("StandardMaterial3D_nm8t1")
